@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+// services
+import { login } from '../../services/Login'
+
 import "./style.css";
 
 function Login() {
@@ -11,7 +14,7 @@ function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(objValue);
+    login(objValue)
   };
 
   return (
