@@ -9,9 +9,6 @@ function Login() {
 
   const [objValue, setObjValue] = useState({});
 
-  const [valor, setValor] = useState("password");
- 
-
   const handleSubmit = e => {
     e.preventDefault();
     console.log(objValue);
@@ -59,10 +56,12 @@ function Login() {
           ))}
         </div>
 
-        <div>
-          <input type="button" value="Voltar" />
-
+        <div style={{textAlign:"center"}}>
+          
+          <Link to="cadastro" >Cadastrar-se</Link>
+          <Link to="/" >
           <input type="submit" value="Login" style={{ float: "right" }} />
+          </Link>
         </div>
       </form>
     </div>

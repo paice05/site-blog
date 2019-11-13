@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Views/Login";
 import Posts from "./Views/Posts";
 import Home from "./Views/Home";
-import Cadastro from "./Views/Cadastro"
+import Cadastro from "./Views/Cadastro";
+import NewPost from "./Views/NewPost";
+import MyProfile from "./Views/MyProfile";
 
 export default function routes() {
   return (
@@ -12,11 +14,15 @@ export default function routes() {
       <Switch>
         <Route exact path="/" component={Home}></Route>
 
-        <Route exac path="/login" component={Login}></Route>
+        <Route exact path="/login" component={Login}></Route>
 
         <Route exact path="/posts" component={Posts}></Route>
 
+        <Route exact path="/newpost" component={NewPost}></Route>
+
         <Route exact path="/cadastro" component={Cadastro}></Route>
+
+        <Route exact path="/profile" component={MyProfile}></Route>
       </Switch>
     </Router>
   );

@@ -1,0 +1,17 @@
+p{
+  font-size: 25px;
+  color: green;
+  text-align: center;
+}
+#formulario{
+  position: relative;
+  float: right;
+  width: 950px;
+  padding: 20px;
+  margin-right: 50px;
+ 
+}
+#file{
+  position: absolute;
+  
+}
