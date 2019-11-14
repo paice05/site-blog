@@ -1,32 +1,47 @@
 import React from "react";
 
 // reactstrap
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
-const ModalContainer = ({ modal, tgl, className }) => {
+// components 
+import { LabelAndInput } from '../'
+
+const ModalContainer = ({ modal, closeOrOpen, title, className, children }) => {
 
   const closeBtn = (
-    <button className="close" onClick={tgl}>
+    <button className="close" onClick={closeOrOpen}>
       &times;
     </button>
   );
 
   return (
-    <Modal isOpen={modal} tgl={tgl} className={className}>
-          <ModalHeader tgl={tgl} close={closeBtn}>
-            New Post
-          </ModalHeader>
-          <ModalBody>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={tgl}>
-              Cancel
-            </Button>
-            <Button color="primary" onClick={tgl}>
-              Publish
-            </Button>
-          </ModalFooter>
-        </Modal> 
+    <Modal isOpen={modal} tgl={closeOrOpen} className={className}>
+      <ModalHeader tgl={closeOrOpen} close={closeBtn}>
+        {title}
+      </ModalHeader>
+      <ModalBody>
+      <LabelAndInput
+          type="text"
+          name="Title"
+          placeholder="type a title"
+        ></LabelAndInput>
+        <LabelAndInput type="file" name="Image"></LabelAndInput>
+        <LabelAndInput
+          type="textarea"
+          rows={8}
+          name="Body"
+          placeholder="type a body"
+        ></LabelAndInput>
+      </ModalBody>
+      <ModalFooter>
+        <Button color="secondary" onClick={closeOrOpen}>
+          Cancel
+        </Button>
+        <Button color="primary" onClick={closeOrOpen}>
+          Publish
+        </Button>
+      </ModalFooter>
+    </Modal>
   );
 };
 

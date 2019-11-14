@@ -14,20 +14,24 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button
 } from "reactstrap";
+
+import Modal from "../Modal";
 
 // style
 import "./style.css";
 
-function Nave(props) {
+function Nave({ children }) {
+  console.log(children)
   const [isOpen, setIsOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
-      <link rel="stylesheet" href="style.css" />
       <Navbar color="light" light expand="md">
         <NavbarBrand>
           <Link id="link" to="/">
@@ -39,9 +43,7 @@ function Nave(props) {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link id="link">
-                  New Post
-                </Link>
+                <Button onClick={() => setOpenModal(!openModal)}> New Post </Button>
               </NavLink>
             </NavItem>
 
@@ -67,6 +69,7 @@ function Nave(props) {
           </Nav>
         </Collapse>
       </Navbar>
+      <Modal title='Posts' closeOrOpen={() => setOpenModal(!openModal)} modal={openModal}> {children} </Modal>
     </div>
   );
 }

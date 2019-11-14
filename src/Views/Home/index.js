@@ -57,7 +57,7 @@ function Home() {
           </Media>
         </Media>
         <div>
-          <img src={Floresta} id="imagem" alt="" srcset="" />
+          <img src={Floresta} id="imagem" alt="" />
         </div>
       </div>
       <hr />
