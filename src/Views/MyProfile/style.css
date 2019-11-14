@@ -1,4 +1,4 @@
-p{
+#pProfile{
   font-size: 25px;
   color: green;
   text-align: center;
@@ -13,5 +13,12 @@ p{
 }
 #file{
   position: absolute;
-  
+  flex: left;
+  width: 325px;
+  margin-left: 20px;
+}
+
+#btnAlterar{
+  position: absolute;
+  right: 20px;
 }

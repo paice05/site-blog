@@ -20,7 +20,7 @@ function MyProfile() {
             <LabelAndInput type="date" name="Date of birth" />
             <Button id="btnAlterar" type="submit" className="primary" color="primary"> Save</Button>
             </div>
-            <p>Set a image</p>
+            <p id="pProfile">Set a image</p>
             <Input id="file" type="file"/>
           
         </Form>

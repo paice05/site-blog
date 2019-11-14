@@ -1,5 +1,7 @@
 import React from "react";
-import {FormGroup,Label,Input} from "reactstrap"
+
+// components
+import { FormGroup, Label, Input } from "reactstrap"
 
 function LabelAndInput(props) {
     

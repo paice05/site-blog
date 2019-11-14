@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 
+// reactstrap
 import { Link } from "react-router-dom";
 
 // services
 import { login } from '../../services/Login'
 
-import "./style.css";
+// style
+import "../../Assets/css/table.css";
+const style = {
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "90vh"
+  },
+  form: { border: "1px solid", padding: "10px" }
+}
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -19,16 +30,11 @@ function Login() {
 
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "90vh"
-      }}
+      style={style.container}
     >
       <form
         onSubmit={handleSubmit}
-        style={{ border: "1px solid", padding: "10px" }}
+        style={style.form}
       >
         <div className="div-table">
           {[
@@ -60,10 +66,9 @@ function Login() {
         </div>
 
         <div style={{textAlign:"center"}}>
-          
-          <Link to="cadastro" >Cadastrar-se</Link>
+          <Link to="cadastro">Cadastrar-se</Link>
           <Link to="/" >
-          <input type="submit" value="Login" style={{ float: "right" }} />
+            <input type="submit" value="Login" style={{ float: "right" }} />
           </Link>
         </div>
       </form>

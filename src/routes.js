@@ -7,6 +7,7 @@ import Home from "./Views/Home";
 import Cadastro from "./Views/Cadastro";
 import NewPost from "./Views/NewPost";
 import MyProfile from "./Views/MyProfile";
+import PostOpen from "./Views/PostOpen";
 
 export default function routes() {
   return (
@@ -23,6 +24,8 @@ export default function routes() {
         <Route exact path="/cadastro" component={Cadastro}></Route>
 
         <Route exact path="/profile" component={MyProfile}></Route>
+
+        <Route exact path="/post" component={PostOpen}></Route>
       </Switch>
     </Router>
   );

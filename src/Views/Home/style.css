@@ -1,0 +1,46 @@
+#main{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  margin: 0 150px 0 200px;
+  
+}
+#texto{
+height: 240px;
+overflow: hidden;
+/*margin: 10px;*/
+}
+#btnRM{
+  position: relative;
+  float: right;
+  bottom: 130px;
+  margin: 0 0 20px -15px;
+}
+#img{
+  border: solid 1px lightgrey;
+  border-radius: 50px;
+  width: 100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#imagem{
+  margin-left: 10px;
+  width: 350px;
+  height: 250px;
+  border-radius: 10px;
+}
+.dadosPerfil{
+  color: black;
+  font-size: 14pt;
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+  text-align: center;
+}
+.age{
+  font-size: 11pt;
+}
+.qtdPosts{
+  font-size: 11pt;
+}

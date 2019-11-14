@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
-import FormularioNewPost from "../FormularioNewPost";
-import "./style.css";
+
+// reactstrap
 import {
   Collapse,
   Navbar,
@@ -15,24 +16,14 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+
+// style
+import "./style.css";
 
 function Nave(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
-  //Modal
-  const { className } = props;
-  const [modal, setModal] = useState(false);
-
-  const tgl = () => setModal(!modal);
-
-  const closeBtn = (
-    <button className="close" onClick={tgl}>
-      &times;
-    </button>
-  );
 
   return (
     <div>
@@ -48,7 +39,7 @@ function Nave(props) {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link id="link" onClick={tgl}>
+                <Link id="link">
                   New Post
                 </Link>
               </NavLink>
@@ -60,14 +51,14 @@ function Nave(props) {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link id="link" to="/profile">
+                  <Link id="link" className="drop" to="/profile">
                     Profile
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link id="link" to="/login">
+                  <Link id="link" className="drop" to="/login">
                     Logout
                   </Link>
                 </DropdownItem>
@@ -76,26 +67,6 @@ function Nave(props) {
           </Nav>
         </Collapse>
       </Navbar>
-
-      {/* Modal  */}
-      <div>
-        <Modal isOpen={modal} tgl={tgl} className={className}>
-          <ModalHeader tgl={tgl} close={closeBtn}>
-            New Post
-          </ModalHeader>
-          <ModalBody>
-            <FormularioNewPost></FormularioNewPost>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={tgl}>
-              Cancel
-            </Button>
-            <Button color="primary" onClick={tgl}>
-              Publish
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </div>
     </div>
   );
 }

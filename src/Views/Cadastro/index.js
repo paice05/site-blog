@@ -1,11 +1,25 @@
 import React, { useState } from "react";
+
+// reactstrap
 import { Link } from "react-router-dom";
-import "./style.css";
+
+// assets
+import "../../Assets/css/table.css";
+
+// style
+const style = { 
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "90vh"
+  },
+  form: { border: "1px solid", padding: "10px" }
+}
 
 function Cadastro() {
   const [objValue, setObjValue] = useState({});
 
-  // TODO: Vou otim
   const handleSubmit = e => {
     e.preventDefault();
     console.log(objValue);
@@ -13,16 +27,11 @@ function Cadastro() {
 
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "90vh"
-      }}
+      style={style.container}
     >
       <form
         onSubmit={handleSubmit}
-        style={{ border: "1px solid", padding: "10px" }}
+        style={style.form}
       >
         <div className="div-table">
           {[

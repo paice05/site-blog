@@ -1,8 +1,9 @@
 import LabelAndInput from "./LabelAndInput";
 import Nave from "./nave";
-import FormularioNewPost from "./FormularioNewPost";
+import Perfil from "./Perfil";
+
 export {
   LabelAndInput,
   Nave,
-  FormularioNewPost
+  Perfil,
 }
