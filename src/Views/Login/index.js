@@ -4,10 +4,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // services
-import { login } from '../../services/Login'
+import { login } from "../../services/Login";
+
+import { useHistory } from "react-router-dom";
 
 // style
 import "../../Assets/css/table.css";
+
 const style = {
   container: {
     display: "flex",
@@ -16,26 +19,23 @@ const style = {
     height: "90vh"
   },
   form: { border: "1px solid", padding: "10px" }
-}
+};
 
 function Login() {
+  var history = useHistory();
+
   const [showPass, setShowPass] = useState(false);
 
   const [objValue, setObjValue] = useState({});
 
   const handleSubmit = e => {
     e.preventDefault();
-    login(objValue)
+    login(history, objValue.username, objValue.password);
   };
 
   return (
-    <div
-      style={style.container}
-    >
-      <form
-        onSubmit={handleSubmit}
-        style={style.form}
-      >
+    <div style={style.container}>
+      <form onSubmit={handleSubmit} style={style.form}>
         <div className="div-table">
           {[
             {
@@ -46,7 +46,7 @@ function Login() {
             },
             {
               name: "Password",
-              type: (showPass ? "text" : "password"),
+              type: showPass ? "text" : "password",
               fn: e => setObjValue({ ...objValue, password: e.target.value }),
               bole: false
             }
@@ -57,7 +57,7 @@ function Login() {
               </div>
               <div className="div-table-col">
                 <input type={type} onChange={e => fn(e)} />{" "}
-                <button hidden={bole} onClick={ () => setShowPass(!showPass)}>
+                <button hidden={bole} onClick={() => setShowPass(!showPass)}>
                   ico
                 </button>
               </div>
@@ -65,11 +65,10 @@ function Login() {
           ))}
         </div>
 
-        <div style={{textAlign:"center"}}>
+        <div style={{ textAlign: "center" }}>
           <Link to="cadastro">Cadastrar-se</Link>
-          <Link to="/" >
-            <input type="submit" value="Login" style={{ float: "right" }} />
-          </Link>
+
+          <input type="submit" value="Login" style={{ float: "right" }} />
         </div>
       </form>
     </div>

@@ -1,14 +1,21 @@
-import Axios from 'axios';
+import Axios from "axios";
 
-export const login = async (username, passsword) => {
-  const response = await Axios({
-    url: '',
-    method: 'post',
-    data: {
-      username,
-      passsword
+export const login = async (history, username, password) => {
+  try {
+    const response = await Axios({
+      url: "http://localhost:5959/authors/login",
+      method: "post",
+      data: {
+        username,
+        password
+      }
+    });
+
+    //var data = response.data.data;
+    if (response.status === 200) {
+      history.push("/");
     }
-  });
-
-  console.log(response);
-} 
+  } catch (error) {
+    console.log(error.response);
+  }
+};

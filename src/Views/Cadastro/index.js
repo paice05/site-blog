@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 // assets
 import "../../Assets/css/table.css";
 
+//Cadastro
+import {Store} from "../../services/Author/Store"
+
 // style
 const style = { 
   container: {
@@ -22,7 +25,8 @@ function Cadastro() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(objValue);
+    Store(objValue.name,objValue.username,objValue.email,objValue.password,objValue.age)
+    //console.log(objValue);
   };
 
   return (
@@ -62,7 +66,7 @@ function Cadastro() {
             {
               name: "Age",
               type: "date",
-              fn: e => setObjValue({ ...objValue, date: e.target.value }),
+              fn: e => setObjValue({ ...objValue, age: e.target.value }),
               placeholder: null
             }
           ].map(({ name, type, fn, placeholder }) => (

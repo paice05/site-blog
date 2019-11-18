@@ -1,7 +1,7 @@
 import React from "react";
 
 // components
-import { Nave, LabelAndInput } from "../../Components";
+import { Nave } from "../../Components";
 
 function NewPost() {
   return (

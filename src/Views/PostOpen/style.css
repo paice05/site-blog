@@ -1,13 +1,13 @@
 #btnVoltar{
   position: absolute;
-  top: 60px;
+  top: 70px;
   margin: 10px;
 }
 
 #mainPerfil{
   margin: 0 200px 0 200px;
   padding: 20px;
- border: solid ;
+  border: solid ;
   height: auto;
 }
 #perfilP{
@@ -21,13 +21,13 @@
   border-radius: 50%;
   width: 90px;
   border: solid 1px lightgrey;
-  margin: 20px 20px 20px 0;
+  margin: 62px 20px 20px 20px;
 }
 #imgComment{
   border-radius: 50%;
   width: 70px;
   border: solid 1px lightgrey;
-  margin: 20px 20px 20px 0;
+  margin: 20px 20px 20px 4px;
 }
 #titlePerfil{
  font-weight: bold;
@@ -38,12 +38,19 @@
   text-align: justify;
 }
 #corpo{
-  border: dotted;
   width: 650px;
   height: auto;
+  border: none;
+}
+#comments{
+  width: auto;
+  font-size: 12pt;
+}
+#commentText{
+    text-align: justify;
+    margin: 20px 20px 5px 0;
 
 }
-#photoProfileName{
-  width: auto;
-  font-size: 10pt;
+#commentsBox{
+  margin-bottom: 0px;
 }
