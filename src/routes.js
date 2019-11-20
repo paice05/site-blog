@@ -26,7 +26,7 @@ export default function routes() {
 
         <Route exact path="/profile" component={MyProfile}></Route>
 
-        <Route exact path="/post" component={PostOpen}></Route>
+        <Route exact path="/post/:id" component={PostOpen}></Route>
       </Switch>
     </Router>
   );

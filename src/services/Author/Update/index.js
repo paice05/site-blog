@@ -13,6 +13,7 @@ export const Update = async (email, name, username, password, age) => {
         age,
       }
     });
+    
     return response;
   } catch (error) {
     return error.response;

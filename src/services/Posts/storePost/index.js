@@ -6,7 +6,7 @@ export const store = async (author_id, title, body) => {
       url: "http://localhost:5959/posts",
       method: "POST",
       data: {
-        author_id,
+        author_id: 4,
         title,
         body
       }

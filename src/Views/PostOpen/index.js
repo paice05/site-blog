@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -6,17 +6,40 @@ import { Media } from "reactstrap";
 
 import { Nave } from "../../Components/";
 
+import { showPostsComments } from "../../services/Posts/showPostsComments";
+
 import Avatar from "../../Assets/img/perfil.png";
 
 import "./style.css";
 
-function NewPost() {
+function NewPost(props) {
+  const [nameVal, setNameVal] = useState();
+  const [ageVal, setAgeVal] = useState();
+  const [emailVal, setEmailVal] = useState();
+  const [titleVal, setTitleVal] = useState();
+  const [bodyVal, setBodyVal] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await showPostsComments(props.match.params.id);
+      setNameVal(response.data.data.author.name);
+      setAgeVal(response.data.data.author.age);
+      setEmailVal(response.data.data.author.email);
+      setTitleVal(response.data.data.title);
+      setBodyVal(response.data.data.body);
+    }
+    fetchData();
+    console.log("esse é meu id: " + props.match.params.id);
+  }, [props.match.params.id]);
+
   return (
     <>
       <Nave></Nave>
-      <div style={{
-        marginLeft: "220px"
-      }}>
+      <div
+        style={{
+          marginLeft: "220px"
+        }}
+      >
         <button id="btnVoltar" className="btn btn-success">
           <Link id="link" to="/">
             Voltar
@@ -33,68 +56,17 @@ function NewPost() {
               padding: "10px"
             }}
           >
-            <Media heading>Daniel Barbosa de Lima</Media>
-            15:26 11/11/2019
+            <Media heading>{nameVal}</Media>
+            {ageVal}
+            <br />
+            {emailVal}
             <div id="perfilP">
               <Media heading id="titlePerfil">
-                Titulo - Significado da palavra "Comentário"
+                {titleVal}
               </Media>
               <br />
               <div id="corpo">
-                <p id="pBody">
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  et
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.77777777777777777777 77777777777777778888888
-                
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-             
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.77777777777777777777 77777777777777778888888
-                  888888888888888888888888 88888888888888888888888888888888
-              
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                  
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                  
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.77777777777777777777 77777777777777778888888
-                  888888888888888888888888 88888888888888888888888888888888
-                  
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                 
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.77777777777777777777 77777777777777778888888
-                  888888888888888888888888 88888888888888888888888888888888
-                  
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                  
-                  Série de notas ou ponderações, por escrito ou orais, críticas
-                  ou de esclarecimento, acerca de um texto, um evento, um ato
-                  etc.
-                </p>
+                <p id="pBody">{bodyVal}</p>
                 <p
                   style={{
                     marginBottom: "30px"
@@ -110,7 +82,7 @@ function NewPost() {
                     value="Comentar"
                   />
                 </p>
-                
+
                 {/* Comentários */}
                 <div id="comments">
                   <Media>
@@ -144,7 +116,7 @@ function NewPost() {
                       <Media object src={Avatar} id="imgComment" />
                       <Media heading>
                         <p
-                          style={{ fontSize: "10pt",margin: "-20px 0 0 20px"}}
+                          style={{ fontSize: "10pt", margin: "-20px 0 0 20px" }}
                         >
                           Daniel
                         </p>
@@ -170,7 +142,7 @@ function NewPost() {
                       <Media object src={Avatar} id="imgComment" />
                       <Media heading>
                         <p
-                          style={{ fontSize: "10pt",margin: "-20px 0 0 20px"}}
+                          style={{ fontSize: "10pt", margin: "-20px 0 0 20px" }}
                         >
                           Daniel
                         </p>
@@ -189,7 +161,6 @@ function NewPost() {
                     </div>
                   </Media>
                 </div>
-
               </div>
             </div>
           </Media>

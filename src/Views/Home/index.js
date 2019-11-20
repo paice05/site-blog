@@ -64,7 +64,7 @@ function Home() {
                   <Media heading>{valorAtual.title}</Media>
                   {valorAtual.body}
                   <button className="btn btn-success" id="btnRM">
-                    <Link to="/post" id="link">
+                    <Link to={`/post/${valorAtual.id}`} id="link">
                       Read more
                     </Link>
                   </button>

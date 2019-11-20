@@ -6,10 +6,13 @@ import { Form, Button, Input } from "reactstrap";
 // components
 import { Nave, LabelAndInput } from "../../Components/";
 
-//
+// moment js
+import moment from "moment"
+
 import { Update } from "../../services/Author/Update";
 // style
 import "./style.css";
+
 import "../../Assets/css/table.css";
 
 function MyProfile() {
@@ -19,14 +22,24 @@ function MyProfile() {
   const [passwordVal, setPasswordVal] = useState();
   const [ageVal, setAgeVal] = useState();
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     Update(emailVal, nameVal, usernameVal, passwordVal, ageVal);
   }
 
-  function useEffect(){
-    
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const response = await Update();
+      setEmailVal(response.data.data.email);
+      setNameVal(response.data.data.name);
+      setUsernameVal(response.data.data.username);
+      setPasswordVal(response.data.data.password);
+      moment.locale('pt-br');  
+      setAgeVal(moment(response.data.data.age).add(1,'days').locale('pt-br').format('YYYY-MM-DD'));
+      
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <Nave />
@@ -42,30 +55,35 @@ function MyProfile() {
                 type="email"
                 name="Email"
                 placeholder="type a valid email"
-                onChange={(e) => setEmailVal(e.target.value)}
+                onChange={e => setEmailVal(e.target.value)}
+                value={emailVal}
               />
               <LabelAndInput
                 type="text"
                 name="Name"
                 placeholder="type your full name"
-                onChange={(e) => setNameVal(e.target.value)}
+                onChange={e => setNameVal(e.target.value)}
+                value={nameVal}
               />
               <LabelAndInput
                 type="text"
                 name="Username"
                 placeholder="type a username"
                 onChange={e => setUsernameVal(e.target.value)}
+                value={usernameVal}
               />
               <LabelAndInput
                 type="password"
                 name="Password"
                 placeholder="type a password"
-                onChange={(e) => setPasswordVal(e.target.value)}
+                onChange={e => setPasswordVal(e.target.value)}
+                value={passwordVal}
               />
               <LabelAndInput
                 type="date"
                 name="Date of birth"
                 onChange={e => setAgeVal(e.target.value)}
+                value={ageVal}
               />
               <Button
                 id="btnAlterar"
@@ -76,7 +94,6 @@ function MyProfile() {
               >
                 Save
               </Button>
-       
             </Form>
           </div>
         </div>

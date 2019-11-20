@@ -20,7 +20,6 @@ const ModalContainer = ({ modal, closeOrOpen, title, className, children }) => {
 
 
   function handleSubmit(){
-   console.log(bodyVal,titleVal);
    store(author_id, titleVal, bodyVal);
    closeOrOpen();
   }

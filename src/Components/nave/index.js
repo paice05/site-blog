@@ -24,7 +24,6 @@ import Modal from "../Modal";
 import "./style.css";
 
 function Nave({ children }) {
-  console.log(children)
   const [isOpen, setIsOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false)
 
