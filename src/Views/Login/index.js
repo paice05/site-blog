@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // services
-import { login } from "../../services/Login";
+import { postOrPut } from "../../services/methods";
 
 import { useHistory } from "react-router-dom";
 
@@ -28,9 +28,9 @@ function Login() {
 
   const [objValue, setObjValue] = useState({});
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    login(history, objValue.username, objValue.password);
+    await postOrPut('/authors/login', null, { ...objValue })
   };
 
   return (
@@ -50,8 +50,8 @@ function Login() {
               fn: e => setObjValue({ ...objValue, password: e.target.value }),
               bole: false
             }
-          ].map(({ name, type, fn, bole }) => (
-            <div className="div-table-row">
+          ].map(({ name, type, fn, bole }, index) => (
+            <div className="div-table-row" key={index}>
               <div className="div-table-col" style={{ textAlign: "right" }}>
                 {name}
               </div>

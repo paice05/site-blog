@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 import "../../Assets/css/table.css";
 
 //Cadastro
-import {Store} from "../../services/Author/Store"
+import { postOrPut } from "../../services/methods";
 
 // style
-const style = { 
+const style = {
   container: {
     display: "flex",
     alignItems: "center",
@@ -18,25 +18,21 @@ const style = {
     height: "90vh"
   },
   form: { border: "1px solid", padding: "10px" }
-}
+};
 
 function Cadastro() {
   const [objValue, setObjValue] = useState({});
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    Store(objValue.name,objValue.username,objValue.email,objValue.password,objValue.age)
+    const abc = await postOrPut("/authors", null, { ...objValue });
+    console.log(abc)
     //console.log(objValue);
   };
 
   return (
-    <div
-      style={style.container}
-    >
-      <form
-        onSubmit={handleSubmit}
-        style={style.form}
-      >
+    <div style={style.container}>
+      <form onSubmit={handleSubmit} style={style.form}>
         <div className="div-table">
           {[
             {
@@ -69,8 +65,8 @@ function Cadastro() {
               fn: e => setObjValue({ ...objValue, age: e.target.value }),
               placeholder: null
             }
-          ].map(({ name, type, fn, placeholder }) => (
-            <div className="div-table-row">
+          ].map(({ name, type, fn, placeholder }, index) => (
+            <div className="div-table-row" key={index}>
               <div className="div-table-col" style={{ textAlign: "right" }}>
                 <label htmlFor="age">{name} </label>
               </div>
