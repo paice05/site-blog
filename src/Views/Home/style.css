@@ -11,10 +11,10 @@ overflow: hidden;
 /*margin: 10px;*/
 }
 #btnRM{
-  position: relative;
+  /* position: relative;
   float: right;
   bottom: 130px;
-  margin: 0 0 20px -15px;
+  margin: 0 0 20px -15px; */
 }
 #img{
   border: solid 1px lightgrey;

@@ -1,66 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 // reactstrap
-import { Media } from 'reactstrap'
+import { Media } from "reactstrap";
 
 // components
 import { Nave } from "../../Components";
 
 // assets
-import Avatar from '../../Assets/img/perfil.png';
-import Floresta from '../../Assets/img/floresta.jpg'
+import Avatar from "../../Assets/img/perfil.png";
+import Floresta from "../../Assets/img/floresta.jpg";
 
+//import author dados do  Axios
+import { showRecentsPosts } from "../../services/Posts/showRecentsPosts";
+
+//import moment
+import moment from "moment"
 // style
-import './style.css'
+import "./style.css";
 
 function Home() {
+  const [dados, setDados] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const response = await showRecentsPosts();
+      setDados(response.data.data);
+    }
+    fetchData();
+  }, []);
+  
+
+  if (!dados) {
+    return <p> Loading... </p>;
+  }
+
   return (
     <>
       <Nave></Nave>
-      <div id="main">
-        <Media>
-          <Media left>
-            <Media
-              id="img"
-              object
-              src={Avatar}
-              alt="Generic placeholder image"
-            />
-            <div>
-              <p className="dadosPerfil">Daniel</p>
-              <p className="dadosPerfil age">21 anos</p>
-              <p className="dadosPerfil qtdPosts">18 posts</p>
-            </div>
-          </Media>
 
-          <Media body id="texto">
-            <Media heading>Media heading</Media>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-            nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-            nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            overflow: hidden overflow: hidden overflow: hidden overflow: hidden
-            overflow: hidden overflow: hidden overflow: hidden overflow: hidden
-            overflow: hidden overflow: hidden overflow: hidden overflow: hidden
-            overflow: hidden overflow: hidden overflow: hidden overflow: hidden
-            overflow: hidden overflow: hidden overflow: hidden overflow: hidden
-            overflow: hidden overflow: hidden v
-            <button className="btn btn-success" id="btnRM" >
-            <Link to="/post" style={{textDecoration: "none"}}>Read more</Link>
-            </button>
-          </Media>
-        </Media>
-        <div>
-          <img src={Floresta} id="imagem" alt="" />
-        </div>
-      </div>
-      <hr />
+      {dados.map(valorAtual => {
+        return (
+          <div key={valorAtual.id}> 
+            <div id="main">
+              <Media>
+                <Media left>
+                  <Media
+                    id="img"
+                    object
+                    src={Avatar}
+                    alt="Generic placeholder image"
+                  />
+                  <div>
+                    <p className="dadosPerfil">{valorAtual.author.name}</p>
+                    <p className="dadosPerfil age">Nasceu { moment(valorAtual.author.age).format('YYYY')}</p>
+                    <p className="dadosPerfil qtdPosts">58 posts</p>
+                  </div>
+                </Media>
+
+                <Media body id="texto">
+                  <Media heading>{valorAtual.title}</Media>
+                  {valorAtual.body}
+                  <button className="btn btn-success" id="btnRM">
+                    <Link to="/post" id="link">
+                      Read more
+                    </Link>
+                  </button>
+                </Media>
+              </Media>
+              <div>
+                <img src={Floresta} id="imagem" alt="" />
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </>
   );
 }
