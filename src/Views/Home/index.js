@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
+
 // reactstrap
 import { Media } from "reactstrap";
 
@@ -27,14 +28,17 @@ function Home() {
     async function fetchData() {
       // You can await here
       const response = await showRecentsPosts();
-      setDados(response.data.data);
+  
+      setDados(response.data.data)
     }
     fetchData();
   }, []);
-  
+
 
   if (!dados) {
-    return <p> Loading... </p>;
+   return(
+    <div></div>
+   )
   }
 
   return (

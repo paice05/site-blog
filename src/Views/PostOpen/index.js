@@ -6,6 +6,8 @@ import { Media } from "reactstrap";
 
 import { Nave } from "../../Components/";
 
+import toastr from "toastr";
+
 import { showPostsComments } from "../../services/Posts/showPostsComments";
 
 import Avatar from "../../Assets/img/perfil.png";
@@ -32,6 +34,9 @@ function NewPost(props) {
     console.log("esse é meu id: " + props.match.params.id);
   }, [props.match.params.id]);
 
+  function comentar(){
+    toastr.success("Commented with success!","Commentary")
+  }
   return (
     <>
       <Nave></Nave>
@@ -79,6 +84,7 @@ function NewPost(props) {
                       float: "right",
                       marginRight: "8px"
                     }}
+                    onClick={() => comentar()}
                     value="Comentar"
                   />
                 </p>

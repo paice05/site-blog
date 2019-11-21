@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import {useHistory} from "react-router-dom";
 // reactstrap
 import { Form, Button, Input } from "reactstrap";
 
@@ -8,6 +8,9 @@ import { Nave, LabelAndInput } from "../../Components/";
 
 // moment js
 import moment from "moment"
+
+//toastr
+import toastr from "toastr"
 
 import { Update } from "../../services/Author/Update";
 // style
@@ -22,9 +25,16 @@ function MyProfile() {
   const [passwordVal, setPasswordVal] = useState();
   const [ageVal, setAgeVal] = useState();
 
+  var history = useHistory();
   function handleSubmit(e) {
     e.preventDefault();
-    Update(emailVal, nameVal, usernameVal, passwordVal, ageVal);
+    if(Update(emailVal, nameVal, usernameVal, passwordVal, ageVal)){
+      toastr.success("Updated with success", "Save",{
+        progressBar: true,
+        timeOut: 2000,
+        onHidden: () => history.push("/")
+      })
+    }
   }
 
   useEffect(() => {
@@ -33,8 +43,7 @@ function MyProfile() {
       setEmailVal(response.data.data.email);
       setNameVal(response.data.data.name);
       setUsernameVal(response.data.data.username);
-      setPasswordVal(response.data.data.password);
-      moment.locale('pt-br');  
+      setPasswordVal(response.data.data.password);  
       setAgeVal(moment(response.data.data.age).add(1,'days').locale('pt-br').format('YYYY-MM-DD'));
       
     }

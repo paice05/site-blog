@@ -28,9 +28,11 @@ function Login() {
 
   const [objValue, setObjValue] = useState({});
 
-  const handleSubmit = e => {
+  //const [login, setLogin] = useState();
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    login(history, objValue.username, objValue.password);
+    await login(history, objValue.username, objValue.password);
   };
 
   return (
@@ -50,16 +52,16 @@ function Login() {
               fn: e => setObjValue({ ...objValue, password: e.target.value }),
               bole: false
             }
-          ].map(({ name, type, fn, bole }) => (
-            <div className="div-table-row">
-              <div className="div-table-col" style={{ textAlign: "right" }}>
-                {name}
-              </div>
-              <div className="div-table-col">
-                <input type={type} onChange={e => fn(e)} />{" "}
-                <button hidden={bole} onClick={() => setShowPass(!showPass)}>
-                  ico
-                </button>
+          ].map(({ name, type, fn, bole },index) => (
+            <div key={index}>
+              <div className="div-table-row">
+                <div className="div-table-col" style={{ textAlign: "right" }}>
+                  {name}
+                </div>
+                <div className="div-table-col">
+                  <input type={type} onChange={e => fn(e)} />{" "}
+                  <input type="button" value="hide" hidden={bole} onClick={() => setShowPass(!showPass)}/>
+                </div>
               </div>
             </div>
           ))}
@@ -68,7 +70,15 @@ function Login() {
         <div style={{ textAlign: "center" }}>
           <Link to="cadastro">Cadastrar-se</Link>
 
-          <input type="submit" value="Login" style={{ float: "right" }} />
+          <input
+            type="submit"
+            value="Login"
+            //onClick={(e) =>{
+            //(login ? (<p> {toastr.success("Success!", "Login")} </p>) : (<p> {toastr.error("Usuario ou senha invalidos!", "Login")} </p>))
+            //  }
+            // }
+            style={{ float: "right" }}
+          />
         </div>
       </form>
     </div>
