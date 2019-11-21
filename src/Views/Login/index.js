@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useSelector } from 'react-redux'
 
 // reactstrap
 import { Link } from "react-router-dom";
@@ -28,13 +30,10 @@ function Login() {
 
   const [objValue, setObjValue] = useState({});
 
-  //const [login, setLogin] = useState();
-
   const handleSubmit = async e => {
     e.preventDefault();
     await login(history, objValue.username, objValue.password);
   };
-
   return (
     <div style={style.container}>
       <form onSubmit={handleSubmit} style={style.form}>

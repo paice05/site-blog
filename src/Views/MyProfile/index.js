@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom";
+import { useDispatch } from 'react-redux'
+// ducks
+import { actionsNotifications } from '../../store/ducks/notifications'
 // reactstrap
 import { Form, Button, Input } from "reactstrap";
 
@@ -19,6 +22,8 @@ import "./style.css";
 import "../../Assets/css/table.css";
 
 function MyProfile() {
+  const dispacth = useDispatch()
+
   const [emailVal, setEmailVal] = useState();
   const [nameVal, setNameVal] = useState();
   const [usernameVal, setUsernameVal] = useState();
@@ -52,6 +57,12 @@ function MyProfile() {
   return (
     <>
       <Nave />
+      <button onClick={() => dispacth(actionsNotifications.addNotification())}>
+        Add notification
+      </button>
+      <button onClick={() => dispacth(actionsNotifications.removeNotification())}>
+        remove notification
+      </button>
       <div className="div-table" style={{ width: "100%" }}>
         <div className="div-table-row">
           <div className="div-table-col">

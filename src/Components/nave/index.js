@@ -2,6 +2,10 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+
+// redux
+import { useSelector } from 'react-redux'
+
 // reactstrap
 import {
   Collapse,
@@ -24,6 +28,9 @@ import Modal from "../Modal";
 import "./style.css";
 
 function Nave({ children }) {
+
+  const notification = useSelector(state => state.notifications.notification)
+
   const [isOpen, setIsOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false)
 
@@ -37,6 +44,9 @@ function Nave({ children }) {
             Blog
           </Link>
         </NavbarBrand>
+        <h4>
+          Notifications {notification}
+        </h4>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+import { useDispatch } from 'react-redux'
+
 import { Link } from "react-router-dom";
 
+// ducks
+import { actionsNotifications } from '../../store/ducks/notifications'
 
 // reactstrap
 import { Media } from "reactstrap";
@@ -22,6 +26,7 @@ import moment from "moment"
 import "./style.css";
 
 function Home() {
+  const dispacth = useDispatch()
   const [dados, setDados] = useState();
 
   useEffect(() => {
@@ -44,6 +49,13 @@ function Home() {
   return (
     <>
       <Nave></Nave>
+
+      <button onClick={() => dispacth(actionsNotifications.addNotification())}>
+        Add notification
+      </button>
+      <button onClick={() => dispacth(actionsNotifications.removeNotification())}>
+        remove notification
+      </button>
 
       {dados.map(valorAtual => {
         return (
